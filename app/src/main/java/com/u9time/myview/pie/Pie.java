@@ -59,7 +59,9 @@ public class Pie extends View {
         mLinePaint = new Paint();
         mLinePaint.setAntiAlias(true);
         mLinePaint.setColor(Color.BLACK);
+        /*以下两者互不影响*/
         mLinePaint.setStrokeWidth(4);
+        mLinePaint.setTextSize(40);
     }
 
     //当自定控件的尺寸定好了的时候调用,就是xml布局中的
@@ -104,23 +106,31 @@ public class Pie extends View {
             canvas.drawPath(mPath, mPaint);
 
 //            画外面多出来的延长线
-            drawLine(canvas, startAngle, swipeAngle);
+            double a = Math.toRadians(startAngle + swipeAngle / 2);
+            float startX = (float) (mRadius * Math.cos(a));
+            float startY = (float) (mRadius * Math.sin(a));
+            float endX = (float) ((mRadius + 30) * Math.cos(a));
+            float endY = (float) ((mRadius + 30) * Math.sin(a));
+            canvas.drawLine(startX, startY, endX, endY, mLinePaint);
 
 //            改变每一次的起始角度
             startAngle += swipeAngle + 1;
 
 //            在每次绘制完毕,path必须要进行重置,清除上一次相关记录
             mPath.reset();
-        }
-    }
 
-    private void drawLine(Canvas canvas, float startAngle, float swipeAngle) {
-        double a = Math.toRadians(startAngle + swipeAngle / 2);
-        float startX = (float) (mRadius*Math.cos(a));
-        float startY = (float) (mRadius*Math.sin(a));
-        float endX = (float) ((mRadius+30)*Math.cos(a));
-        float endY = (float) ((mRadius+30)*Math.sin(a));
-        canvas.drawLine(startX,startY,endX,endY,mLinePaint);
+//            绘制文本是以左下角为基准点的,其他都是左上角的.
+            String persent = String.format("%.1f",
+                    mPieBeanArrayList.get(i).getValue() / totalValue * 100);
+            persent = persent + "%";
+            if (startAngle % 360f >= 90 && startAngle % 360f <= 270) {
+                float measureText = mLinePaint.measureText(persent);
+                canvas.drawText(persent, endX - measureText, endY, mLinePaint);
+            } else {
+                canvas.drawText(persent, endX, endY, mLinePaint);
+            }
+
+        }
     }
 
     public void setDatas(ArrayList<PieBean> pieBeanArrayList) {
