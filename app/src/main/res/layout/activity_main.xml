@@ -3,13 +3,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.u9time.myview.MainActivity">
 
     <!--注意此处的属性问题-->
-    <com.u9time.myview.CanvasTestView
+    <!--<com.u9time.myview.CanvasTestView
         style="@style/AlertDialog.AppCompat.Light"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="bottom" />
+        android:layout_gravity="bottom" />-->
+
+    <com.u9time.myview.PathCanvasView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

@@ -10,6 +10,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        CanvasTestView canvasTestView = new CanvasTestView(this);
+//        CanvasTestView canvasTestView = new CanvasTestView(this);
     }
 }
