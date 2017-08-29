@@ -17,7 +17,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent" />-->
 
-    <com.u9time.myview.DrawTextView
+    <!--<com.u9time.myview.DrawTextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />-->
+
+    <com.u9time.myview.pie.Pie
+        android:id="@+id/pie"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </LinearLayout>
