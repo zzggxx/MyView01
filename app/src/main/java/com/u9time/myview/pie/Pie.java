@@ -2,6 +2,7 @@ package com.u9time.myview.pie;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.RectF;
@@ -28,6 +29,8 @@ public class Pie extends View {
     private Paint mPaint;
     private Path mPath;
     private float totalValue;
+    private int mRadius;
+    private Paint mLinePaint;
 
     public Pie(Context context) {
         this(context, null);
@@ -52,6 +55,11 @@ public class Pie extends View {
         mPaint.setAntiAlias(true);
 
         mPath = new Path();
+
+        mLinePaint = new Paint();
+        mLinePaint.setAntiAlias(true);
+        mLinePaint.setColor(Color.BLACK);
+        mLinePaint.setStrokeWidth(4);
     }
 
     //当自定控件的尺寸定好了的时候调用,就是xml布局中的
@@ -63,11 +71,11 @@ public class Pie extends View {
         this.heigth = h;
 //        取小值做半径
         int min = Math.min(w, h);
-        int radius = (int) (min * 0.7f / 2);
-        rectF.left = -radius;
-        rectF.top = -radius;
-        rectF.right = radius;
-        rectF.bottom = radius;
+        mRadius = (int) (min * 0.7f / 2);
+        rectF.left = -mRadius;
+        rectF.top = -mRadius;
+        rectF.right = mRadius;
+        rectF.bottom = mRadius;
     }
 
     @Override
@@ -95,12 +103,24 @@ public class Pie extends View {
 
             canvas.drawPath(mPath, mPaint);
 
+//            画外面多出来的延长线
+            drawLine(canvas, startAngle, swipeAngle);
+
 //            改变每一次的起始角度
             startAngle += swipeAngle + 1;
 
 //            在每次绘制完毕,path必须要进行重置,清除上一次相关记录
             mPath.reset();
         }
+    }
+
+    private void drawLine(Canvas canvas, float startAngle, float swipeAngle) {
+        double a = Math.toRadians(startAngle + swipeAngle / 2);
+        float startX = (float) (mRadius*Math.cos(a));
+        float startY = (float) (mRadius*Math.sin(a));
+        float endX = (float) ((mRadius+30)*Math.cos(a));
+        float endY = (float) ((mRadius+30)*Math.sin(a));
+        canvas.drawLine(startX,startY,endX,endY,mLinePaint);
     }
 
     public void setDatas(ArrayList<PieBean> pieBeanArrayList) {
