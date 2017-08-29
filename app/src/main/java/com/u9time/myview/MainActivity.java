@@ -18,6 +18,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+//        bingTu();
+    }
+
+    private void bingTu() {
         mPie = (Pie) findViewById(R.id.pie);
 
         ArrayList<PieBean> pieBeanArrayList = new ArrayList<>();

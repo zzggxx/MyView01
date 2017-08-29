@@ -23,6 +23,12 @@
 
     <com.u9time.myview.pie.Pie
         android:id="@+id/pie"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+
+    <com.u9time.myview.viewgroup.TestLayout
+        android:id="@+id/tl"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>
