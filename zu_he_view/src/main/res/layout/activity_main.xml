@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.u9time.zu_he_view.MainActivity">
+
+    <!--注意上边是又重新生成了命名空间的-->
+    <!--布局relativityLayout等是没有点击属性的,clickable或者直接加点击事件-->
+    <com.u9time.zu_he_view.view.SettingImageView
+        android:id="@+id/setting1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        app:my_background="first"
+        app:my_istoggle="false"
+        app:my_title="我的设置1" />
+
+    <com.u9time.zu_he_view.view.SettingImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:my_background="middle"
+        app:my_istoggle="true"
+        app:my_title="我的设置2" />
+
+    <com.u9time.zu_he_view.view.SettingImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:my_background="last"
+        app:my_title="我的设置3" />
+
+</LinearLayout>
