@@ -76,6 +76,11 @@ public class CanvasTestView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        canvas.save();
+//        canvas.translate(100,0);
+//        canvas.rotate(30);
+        canvas.scale(0.3f,0.3f);
+
         /*绘制圆形,参数自己查看即可知道,多了怎么办呢,使用点的封装*/
 //        canvas.drawCircle(240,400,200,mPaint);
         /*绘制脸*/
@@ -105,5 +110,7 @@ public class CanvasTestView extends View {
 //        canvas.drawPoints(points,2,10,mPaint);
 
         /*自己可以研究图片等画法*/
+
+        canvas.restore();
     }
 }
