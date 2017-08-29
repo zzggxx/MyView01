@@ -44,13 +44,25 @@ public class PathCanvasView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         /*挪到的地方*/
-        mPath.moveTo(200,200);
-        /*中间画线*/
-        mPath.lineTo(100,200);
-        mPath.lineTo(100,300);
-        mPath.lineTo(200,300);
-        /*是否闭合path*/
-//        mPath.close();
+//        mPath.moveTo(200,200);
+//        /*中间画线,上一次结束的地方就是下一次开始的时候除非使用了moveTo*/
+//        mPath.lineTo(100,200);
+//        mPath.lineTo(100,300);
+//        mPath.lineTo(200,300);
+//        /*是否闭合path*/
+////        mPath.close();
+//        canvas.drawPath(mPath,mPaint);
+
+        /*前边两点是相对原来的位置的结束点,后边两个是控制点*/
+        /*连续绘制的时候就是接着上一次的位置继续画*/
+        mPath.moveTo(100,100);
+        mPath.quadTo(200,400,200,200);
+        mPath.quadTo(200,400,300,300);
+        /*mPath.quadTo(200,400,400,400);
+        mPath.quadTo(200,400,500,500);
+        mPath.quadTo(200,400,600,600);
+        mPath.quadTo(200,400,700,700);*/
+        mPath.close();
         canvas.drawPath(mPath,mPaint);
     }
 }
